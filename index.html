@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yad Avraham</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Kollel Yad Avraham</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#donate">Donate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>Kollel Yad Avraham. To dedicate a Chesed Avraham Parsha sheet or to suppurt our Kollel Click below.</p>
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a small organization making a big impact.</p>
+        </section>
+        <section id="donate" class="donation-section">
+            <h2>Support Our Cause</h2>
+            <p>Your donations help us continue our work!</p>
+            <!-- WalletDoc Button Embed -->
+<div class="walletdoc-section">
+    <h3>Pay Your Bills Securely</h3>
+    <p>Click below to access your WalletDoc account and make payments effortlessly.</p>
+    <a href="https://www.walletdoc.com/pay/OhrYisrael" target="_blank" rel="noopener noreferrer" class="walletdoc-button">
+        Pay with WalletDoc
+    </a>
+</div>
+        <!-- Donation Form with Email Submission -->
+<section class="donation-form-section">
+    <h2>Complete Your Donation</h2>
+    <p>Enter your details below. Opt-in to send them via email for a receipt or updates.</p>
+    <form id="donationForm">
+        <!-- Donor Details Fields -->
+        <label for="from_name">Full Name:</label>
+        <input type="text" id="from_name" name="from_name" required>
+
+        <label for="from_email">Email Address:</label>
+        <input type="email" id="from_email" name="from_email" required>
+
+        <label for="donation_amount">Donation Amount ($):</label>
+        <input type="number" id="donation_amount" name="donation_amount" min="1" step="0.01" required>
+
+        <label for="message">Message (Optional):</label>
+        <textarea id="message" name="message" rows="4" placeholder="Add a note about your donation..."></textarea>
+
+        <!-- Opt-in Checkbox for Email Submission -->
+        <label>
+            <input type="checkbox" id="send_email" name="send_email" checked> Send my details via email for confirmation
+        </label>
+
+        <button type="submit">Submit Donation Details</button>
+    </form>
+    <p id="status"></p> <!-- For success/error messages -->
+</section>  
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        // Initialize EmailJS with your User ID
+        emailjs.init("YOUR_USER_ID"); // Replace with your User ID
+
+        document.getElementById('donationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const sendEmailCheckbox = document.getElementById('send_email');
+            if (!sendEmailCheckbox.checked) {
+                document.getElementById('status').innerHTML = '<p>Details saved locally. Proceed to payment below.</p>';
+                return; // Skip email if not checked
+            }
+
+            // Send email via EmailJS
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this) // Replace with your Service ID and Template ID
+                .then(function() {
+                    document.getElementById('status').innerHTML = '<p style="color: green;">Thank you! Your details have been sent via email. Complete your donation now.</p>';
+                    this.reset(); // Clear form
+                }, function(error) {
+                    console.log('Email send error:', error);
+                    document.getElementById('status').innerHTML = '<p style="color: red;">Oops! Email failed to send. Please try again.</p>';
+                });
+        });
+    })();
+</script>
+</body>
+</html>

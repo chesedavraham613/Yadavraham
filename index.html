@@ -32,12 +32,18 @@
         <section id="donate" class="donation-section">
             <h2>Support Our Cause</h2>
             <p>Your donations help us continue our work!</p>
-            <!-- WalletDoc Button Embed -->
-<div class="walletdoc-section">
-    <h3>Pay Your Bills Securely</h3>
-    <p>Click below to access your WalletDoc account and make payments effortlessly.</p>
-    <a href="https://www.walletdoc.com/pay/OhrYisrael" target="_blank" rel="noopener noreferrer" class="walletdoc-button">
-        Pay with WalletDoc
+         <section>
+        <h2>WalletConnect Documentation</h2>
+        <iframe 
+            src="https://www.walletdoc.com/pay/OhrYisrael"  <!-- Full docs site; or a subpage like https://www.walletdoc.com/pay/OhrYisrael -->
+            width="100%" 
+            height="600"  <!-- Adjust height as needed; use '100vh' for full viewport -->
+            frameborder="0" 
+            allowfullscreen>
+            <!-- Fallback text if iframe fails to load -->
+            <p>Your browser does not support iframes. <a href="https://www.walletdoc.com/pay/OhrYisrael">View WalletConnect Docs</a></p>
+        </iframe>
+    </section>
     </a>
 </div>
         <!-- Donation Form with Email Submission -->
@@ -77,7 +83,7 @@
 <script type="text/javascript">
     (function() {
         // Initialize EmailJS with your User ID
-        emailjs.init("YOUR_USER_ID"); // Replace with your User ID
+        emailjs.init("service_6bnggzd"); // Replace with your User ID
 
         document.getElementById('donationForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
@@ -89,7 +95,7 @@
             }
 
             // Send email via EmailJS
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this) // Replace with your Service ID and Template ID
+            emailjs.sendForm('service_6bnggzd', 'ejs-test-mail-service', this) // Replace with your Service ID and Template ID
                 .then(function() {
                     document.getElementById('status').innerHTML = '<p style="color: green;">Thank you! Your details have been sent via email. Complete your donation now.</p>';
                     this.reset(); // Clear form
